@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My College</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{background:#f0f4ff;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;z-index:99}
+.heart{position:absolute;animation:floatUp 4s linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh);opacity:0}20%{opacity:1}100%{transform:translateY(-10vh);opacity:0}}
+.welcome{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;background:linear-gradient(180deg,#4a6cff,#7a5cff)}
+.welcome h1{font-size:50px;color:white;animation:pop 0.8s ease}
+.welcome p{color:white;font-size:18px;margin-top:12px}
+@keyframes pop{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+.big-btn{background:white;color:#4a6cff;border:none;padding:15px 35px;border-radius:30px;font-size:19px;font-weight:bold;margin-top:25px}
+.hero{padding:50px 20px;text-align:center}
+.hero h1{font-size:45px;color:#4a6cff;line-height:1.1}
+.hero h1 span{display:inline-block;animation:bounce 1.2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.photo-box{width:280px;height:180px;margin:20px auto;background:linear-gradient(135deg,#4a6cff,#7a5cff);border-radius:25px;display:flex;justify-content:center;align-items:center;font-size:70px;box-shadow:0 20px 40px rgba(74,108,255,0.35);animation:floaty 3s ease-in-out infinite;color:white}
+@keyframes floaty{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(1deg) translateY(-8px)}}
+.section{padding:20px;max-width:520px;margin:auto}
+.card{background:white;padding:25px;border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.08);margin-bottom:25px;opacity:0;transform:translateY(40px);transition:all 0.7s ease}
+.card.show{opacity:1;transform:translateY(0)}
+.card h2{margin-bottom:10px;color:#4a6cff}
+.card p{line-height:1.7;font-size:17px;color:#333}
+.btn{background:#4a6cff;color:white;border:none;padding:14px;border-radius:30px;font-size:18px;width:100%;margin-top:12px}
+.btn2{background:white;color:#4a6cff;border:2px solid #4a6cff}
+.notice{background:#fff7d6;border:2px dashed #ffb300;padding:25px;border-radius:20px;line-height:1.8;font-size:17px}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="welcome" id="welcome">
+<h1>Welcome To<br>My College</h1>
+<p>Tumhara college, tumhara apna web</p>
+<p style="font-size:50px;margin-top:15px">🎓</p>
+<button class="big-btn" onclick="goNext()">Enter Karo 👇</button>
+</div>
+
+<div id="main" style="display:none">
+<div class="hero">
+<h1><span>M</span><span>Y</span> <span>C</span><span>O</span><span>L</span><span>L</span><span>E</span><span>G</span><span>E</span></h1>
+<p style="font-size:19px;margin-top:10px">Guwahati, Assam</p>
+<div class="photo-box">🎓</div>
+<p>Apne college ki photo yaha aayegi</p>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>📚 Courses</h2>
+<p>BA, BSc, BCom, BCA - Sab courses ki details yaha milegi. Apna course select karo aur notes, syllabus dekho.</p>
+<button class="btn" onclick="alert('Courses page jald aayega!')">Courses Dekho</button>
+</div>
+
+<div class="card">
+<h2>📢 Notice Board</h2>
+<p>Exam date, holiday, assignment - Sabse pehle yaha update hoga. Roz check karo.</p>
+<button class="btn" onclick="alert('Aaj koi naya notice nahi hai')">Notice Dekho</button>
+</div>
+
+<div class="card">
+<h2>🎉 Events & Fest</h2>
+<p>College fest, sports day, freshers party - Sab events ki photo aur video yahi milegi.</p>
+<button class="btn" onclick="alert('Next Event: College Fest Coming Soon!')">Events Dekho</button>
+</div>
+
+<div class="card">
+<h2>👨‍🏫 Teachers & Friends</h2>
+<p>Apne teachers aur doston ka list. Apne batch ke sab doston ko yaha add kar sakte ho.</p>
+<button class="btn" onclick="alert('Friends list jald add hoga')">Friends Dekho</button>
+</div>
+
+<div class="card notice">
+<h2 style="text-align:center">Principal Ka Message ✉️</h2>
+<br>
+<p>Dear Students,</p>
+<p>Hamara college sirf padhai ki jagah nahi, hamari family hai. Yaha se tum sab ek achha future banaoge.</p>
+<p><b>Padho, Khelo, Aur Aage Badho!</b></p>
+<br>
+<p style="text-align:right">- My College</p>
+</div>
+</div>
+</div>
+
+<script>
+function goNext(){
+document.getElementById('welcome').style.display='none';
+document.getElementById('main').style.display='block';
+check();
+window.scrollTo(0,0);
+}
+var box=document.getElementById('hearts');
+setInterval(function(){
+var h=document.createElement('div');
+h.className='heart';
+var arr=['🎓','📚','✨','⭐','💙'];
+h.innerHTML=arr[Math.floor(Math.random()*arr.length)];
+h.style.left=Math.random()*100+'vw';
+h.style.fontSize=(15+Math.random()*25)+'px';
+box.appendChild(h);
+setTimeout(function(){h.remove()},4000);
+},500);
+
+var cards=document.querySelectorAll('.card');
+function check(){
+cards.forEach(function(c){
+var top=c.getBoundingClientRect().top;
+if(top < window.innerHeight-50){c.classList.add('show')}
+});
+}
+window.addEventListener('scroll',check);
+</script>
+</body>
+</html>
